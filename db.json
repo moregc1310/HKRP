@@ -2,15 +2,17 @@
   "users": [
     {
       "photo": {},
-      "age": "23",
+      "age": "32",
       "interests": [
         "crickt"
       ],
-      "fName": "Govind",
+      "fName": "Ajinkya",
       "lName": "More",
-      "addressLine1": "Parbhani",
-      "addressLine2": "Parbhani",
+      "addressLine1": "Parbhani33",
+      "addressLine2": "Parbhani2",
       "id": 4
     }
+    
+    
   ]
 }

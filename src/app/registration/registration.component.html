@@ -62,11 +62,24 @@
             <div class="row">
               <div class="col">
                 <label for="firstname" class="form-label">First Name</label>
-                <input type="text" class="form-control" id="firstname"  formControlName="fName">
+                <input type="text" class="form-control" id="firstname"  formControlName="fName" (input)="fName.updateValueAndValidity()" >
+                <div class="text-danger" *ngIf="fName.touched && fName.errors">
+                  <div *ngIf="fName.hasError('required')">It is required</div>
+                  <div *ngIf="fName.hasError('minlength')">Please enter a valid first name</div>
+                  <div *ngIf="fName.hasError('maxlength')">Please enter a valid first name (max 20 characters)</div>
+                  <div *ngIf="fName.hasError('pattern')">Please enter a valid first name</div>
+                </div>
               </div>
+
               <div class="col">
                 <label for="lastname" class="form-label">Last Name</label>
-                <input type="text" class="form-control" id="lastname"  formControlName="lName">
+                <input type="text" class="form-control" id="lastname"  formControlName="lName" (input)="fName.updateValueAndValidity()">
+                <div class="text-danger" *ngIf="lName.touched && lName.errors">
+                  <div *ngIf="lName.hasError('required')">It is required</div>
+                  <div *ngIf="lName.hasError('minlength')">Please enter a valid first name</div>
+                  <div *ngIf="lName.hasError('maxlength')">Please enter a valid first name (max 20 characters)</div>
+                  <div *ngIf="lName.hasError('pattern')">Please enter a valid first name</div>
+                </div>
               </div>
             </div>
 
@@ -91,56 +104,8 @@
               <input type="range" class="form-control" id="age"  formControlName="age" min="18" max="99" >
             </div>
 
-            
-        
-            <!-- <label for="interest">Interest:</label>
-            <div *ngFor="let interest of interests; let i = index">
-              <input type="text" id="interest" formControlName="interests" [(ngModel)]="interests" placeholder="Type your interest">
-              <button type="button" (click)="removeInterest(i)">Remove</button>
-            </div> -->
-
-            <!-- <div class="mb-3">
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Home Address
-                </a>
-                <ul class="dropdown-menu">
-                  <div class="mb-3">
-                    <label for="address" class="form-label">Address Line 1</label>
-                    <input type="text" class="form-control" id="address"  formControlName="addressLine1">
-                  </div>
-
-                  <div class="mb-3">
-                    <label for="address2" class="form-label">Address Line 2</label>
-                    <input type="text" class="form-control" id="address2"  formControlName="addressLine2">
-                  </div>
-                  
-                </ul>
-              </li>
-            </div> -->
-
-            <!-- <div class="mb-3">
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Company Address
-                </a>
-                <ul class="dropdown-menu">
-                  <div class="mb-3">
-                    <label for="address" class="form-label">Company Address Line 1</label>
-                    <input type="text" class="form-control" id="address"  formControlName="addressLine1">
-                  </div>
-                  
-                  <div class="mb-3">
-                    <label for="address2" class="form-label">Comapny Address Line 2</label>
-                    <input type="text" class="form-control" id="address2"  formControlName="addressLine2">
-                  </div>
-                  
-                </ul>
-              </li>
-            </div> -->
-            
             <div class="d-grid gap-2 mb-3">
-                <button class="btn btn-primary" type="submit" (click)="onSubmit()" data-bs-dismiss="modal">Submit</button>
+                <button class="btn btn-primary" type="submit" (click)="onSubmit()" [disabled]="!registrationForm.valid" data-bs-dismiss="modal">Submit</button>
                
               </div>
 

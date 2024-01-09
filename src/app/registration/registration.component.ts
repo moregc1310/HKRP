@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./registration.component.scss']
 })
 export class RegistrationComponent implements OnInit{
+[x: string]: any;
   registrationForm!: FormGroup;
   interests: string[] = [];
 
@@ -19,8 +20,9 @@ export class RegistrationComponent implements OnInit{
       photo: [null, Validators.required], // Add validation for photo size
       age: [18, Validators.required],
       interests: this.formBuilder.array(['crickt']),
-      fName:[''],
-      lName:[''],
+      
+      fName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(20), Validators.pattern("[a-zA-Z]+")]],
+      lName:['',[Validators.required, Validators.minLength(1), Validators.maxLength(20), Validators.pattern("[a-zA-Z]+")]],
       addressLine1:[''],
       addressLine2:['']
     });
@@ -47,16 +49,34 @@ export class RegistrationComponent implements OnInit{
   }
 
   onSubmit() {
-    
-    console.log('Form submitted:', this.registrationForm.value);
+    if (this.registrationForm.valid) {
+      this.signUp();
+    }
+  }
+
+  signUp() {
+    this.http.postDataToServer("users", this.registrationForm.value).subscribe(
+      (response: any) => {
+        // Handle successful response
+        console.log('Form submitted successfully:', response);
+        this.router.navigate(['/profile']);
+      },
+      (error: any) => {
+        // Handle error
+        console.error('Form submission failed:', error);
+      }
+    );
   }
 
 
-  signUp(){
-    console.log(this.registrationForm.value);
-    this.http.postDataToServer("users",this.registrationForm.value).subscribe((el:any)=>{
-      this.router.navigate(['/profile']);
-    })
+  
+
+  get fName(){
+    return this.registrationForm.controls['fName'];
+  }
+
+  get lName(){
+    return this.registrationForm.controls['lName'];
   }
   
 
