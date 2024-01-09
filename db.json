@@ -1,0 +1,16 @@
+{
+  "users": [
+    {
+      "photo": {},
+      "age": "23",
+      "interests": [
+        "crickt"
+      ],
+      "fName": "Govind",
+      "lName": "More",
+      "addressLine1": "Parbhani",
+      "addressLine2": "Parbhani",
+      "id": 4
+    }
+  ]
+}

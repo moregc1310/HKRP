@@ -1,0 +1,24 @@
+
+
+
+<!-- profile.component.html -->
+<div class="container border border-primary" *ngFor="let items of users">
+  <h2 class="fst-italic fw-semibold">profiles</h2><hr>
+
+  <form (submit)="editProfile(items)">
+    <div class="mb-3" *ngFor="let field of ['fName', 'lName', 'addressLine1', 'addressLine2', 'age']">
+      <label [for]="field" class="form-label">{{ field === 'fName' ? 'First' : field === 'lName' ? 'Last' : field.charAt(0).toUpperCase() + field.slice(1) }} </label>
+      <input type="text" class="form-control" [id]="field" [(ngModel)]="items[field]" [name]="field">
+    </div>
+
+    <button type="submit" class="btn btn-secondary mb-3">Edit & Save</button>
+  </form>
+
+
+  <div class="popup" *ngIf="successMessage">
+    <h3 class="fw-semibold text-success">Data successfully edited!</h3>
+  </div>
+
+</div>
+
+

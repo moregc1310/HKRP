@@ -1,0 +1,177 @@
+<p>registration works!</p>
+<!-- registration-form.component.html -->
+
+ <div class="container">
+
+  <nav class="navbar navbar-light bg-light ">
+      <div class="container-fluid">
+          <a class="navbar-brand ms-3 " href="#">
+              
+             <span class="text-primary fw-semibold">Demo App</span> 
+          </a>
+          <div class="text-end   ">
+              <a  class="text-decoration-none me-3">Home</a>
+              <a  class="text-decoration-none me-3">About us</a>
+              <a  class="text-decoration-none me-3">Jobs</a>
+              <a  class="text-decoration-none me-3">Cleints</a>
+              <a  class="text-decoration-none me-3">Employees</a>
+              <a  class="text-decoration-none me-3">Contact us</a>
+             
+              
+          </div>
+      </div>
+  </nav>
+
+  <div>
+    <h1 class="text-dark mt-5 fs-1">
+      I'm Looking For..
+    </h1>
+  </div> 
+
+  <form class="d-flex" role="search">
+    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success" type="submit">Search</button>
+  </form>
+
+  <div class="text-center mt-5">
+    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal1">Register</button>
+  </div>
+
+</div> 
+
+
+
+
+
+
+
+
+
+
+
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog " style="height: 90vh;margin-top:2%;  margin-left: 15%; padding: 5%;">
+    <div class="modal-content" style="height: auto; width: 50vw; ">
+
+
+      <body>
+        <div class="container">
+
+          <form [formGroup]="registrationForm" (ngSubmit)="signUp()" >
+
+            <div class="row">
+              <div class="col">
+                <label for="firstname" class="form-label">First Name</label>
+                <input type="text" class="form-control" id="firstname"  formControlName="fName">
+              </div>
+              <div class="col">
+                <label for="lastname" class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="lastname"  formControlName="lName">
+              </div>
+            </div>
+
+
+            <div class="mb-3">
+              <label for="address" class="form-label">Address Line 1</label>
+              <input type="text" class="form-control" id="address"  formControlName="addressLine1">
+            </div>
+
+            <div class="mb-3">
+              <label for="address2" class="form-label">Address Line 2</label>
+              <input type="text" class="form-control" id="address2"  formControlName="addressLine2">
+            </div>
+        
+            <div class="mb-3">
+              <label for="photo" class="form-label">Upload Photo (315*325 px)</label>
+              <input type="file" class="form-control" id="photo"   (change)="onPhotoChange($event)" accept="image/*">
+            </div>
+        
+            <div class="mb-3">
+              <label for="age" class="form-label">Select Age:</label>
+              <input type="range" class="form-control" id="age"  formControlName="age" min="18" max="99" >
+            </div>
+
+            
+        
+            <!-- <label for="interest">Interest:</label>
+            <div *ngFor="let interest of interests; let i = index">
+              <input type="text" id="interest" formControlName="interests" [(ngModel)]="interests" placeholder="Type your interest">
+              <button type="button" (click)="removeInterest(i)">Remove</button>
+            </div> -->
+
+            <!-- <div class="mb-3">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Home Address
+                </a>
+                <ul class="dropdown-menu">
+                  <div class="mb-3">
+                    <label for="address" class="form-label">Address Line 1</label>
+                    <input type="text" class="form-control" id="address"  formControlName="addressLine1">
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="address2" class="form-label">Address Line 2</label>
+                    <input type="text" class="form-control" id="address2"  formControlName="addressLine2">
+                  </div>
+                  
+                </ul>
+              </li>
+            </div> -->
+
+            <!-- <div class="mb-3">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Company Address
+                </a>
+                <ul class="dropdown-menu">
+                  <div class="mb-3">
+                    <label for="address" class="form-label">Company Address Line 1</label>
+                    <input type="text" class="form-control" id="address"  formControlName="addressLine1">
+                  </div>
+                  
+                  <div class="mb-3">
+                    <label for="address2" class="form-label">Comapny Address Line 2</label>
+                    <input type="text" class="form-control" id="address2"  formControlName="addressLine2">
+                  </div>
+                  
+                </ul>
+              </li>
+            </div> -->
+            
+            <div class="d-grid gap-2 mb-3">
+                <button class="btn btn-primary" type="submit" (click)="onSubmit()" data-bs-dismiss="modal">Submit</button>
+               
+              </div>
+
+              
+          </form>
+        
+        </div>
+      </body>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
