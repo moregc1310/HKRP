@@ -28,14 +28,38 @@ export class RegistrationComponent implements OnInit{
     });
   }
 
-  onPhotoChange(event: any): void {
+  // onPhotoChange(event: any): void {
    
-    const photo = event.target.files[0];
+  //   const photo = event.target.files[0];
     
-    this.registrationForm.patchValue({
-      photo: photo,
-    });
+  //   this.registrationForm.patchValue({
+  //     photo: photo,
+  //   });
+  // }
+
+  onPhotoChange(event: any): void {
+    const photo = event.target.files[0];
+  
+    if (photo) {
+      const reader = new FileReader();
+  
+      reader.onloadend = () => {
+        this.registrationForm.patchValue({
+          photo: photo,
+          photoBase64: reader.result as string
+        });
+      };
+  
+      reader.readAsDataURL(photo);
+    }
   }
+
+
+
+
+
+
+
 
   removeInterest(index: number): void {
     this.interests.splice(index, 1);
@@ -54,18 +78,36 @@ export class RegistrationComponent implements OnInit{
     }
   }
 
+  // signUp() {
+  //   this.http.postDataToServer("users", this.registrationForm.value).subscribe(
+  //     (response: any) => {
+  //       // Handle successful response
+  //       console.log('Form submitted successfully:', response);
+  //       this.router.navigate(['/profile']);
+  //     },
+  //     (error: any) => {
+  //       // Handle error
+  //       console.error('Form submission failed:', error);
+  //     }
+  //   );
+  // }
+
   signUp() {
-    this.http.postDataToServer("users", this.registrationForm.value).subscribe(
-      (response: any) => {
-        // Handle successful response
-        console.log('Form submitted successfully:', response);
-        this.router.navigate(['/profile']);
-      },
-      (error: any) => {
-        // Handle error
-        console.error('Form submission failed:', error);
-      }
-    );
+    if (this.registrationForm.valid) {
+      const formData = { ...this.registrationForm.value, photo: this.registrationForm.value.photoBase64 };
+      
+      this.http.postDataToServer("users", formData).subscribe(
+        (response: any) => {
+          // Handle successful response
+          console.log('Form submitted successfully:', response);
+          this.router.navigate(['/profile']);
+        },
+        (error: any) => {
+          // Handle error
+          console.error('Form submission failed:', error);
+        }
+      );
+    }
   }
 
 

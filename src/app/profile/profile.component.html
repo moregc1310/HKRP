@@ -6,6 +6,14 @@
   <h2 class="fst-italic fw-semibold">profiles</h2><hr>
 
   <form (submit)="editProfile(items)">
+
+    <div class="mb-3">
+      <label for="photo" class="form-label">Photo</label>
+      <img [src]="items.photo" alt="User Photo" class="img-fluid mb-2" *ngIf="items.photo">
+      <!-- If the 'photo' property is a base64-encoded string, you can use it directly as the source -->
+    </div>
+
+
     <div class="mb-3" *ngFor="let field of ['fName', 'lName', 'addressLine1', 'addressLine2', 'age']">
       <label [for]="field" class="form-label">{{ field === 'fName' ? 'First' : field === 'lName' ? 'Last' : field.charAt(0).toUpperCase() + field.slice(1) }} </label>
       <input type="text" class="form-control" [id]="field" [(ngModel)]="items[field]" [name]="field">
